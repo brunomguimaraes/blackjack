@@ -12,7 +12,6 @@ app.use(require('webpack-dev-middleware')(compliler, {
         noInfo: true,
         publicPath: config.output.publicPath
 }));
-// usar o '/' depois de app.get indica requesting root
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../src/index.html'));
 });
