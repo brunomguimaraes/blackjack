@@ -11,12 +11,12 @@ let values = [  "King" , "Queen" , "Jack" , "Ten" ,
 let deck = [];
 
 for ( let suitsId = 0; suitsId < suits.length; suitsId++ ) {
-    for ( let valuesId = 0; valuesId < values.lenght; valuesId++ ) {
+    for ( let valuesId = 0; valuesId < values.length; valuesId++ ) {
         deck.push( values[valuesId] + " of " + suits[suitsId] );
     }
 }
 
-for ( i = 0; i < deck.lenght; i++ ){
+for ( i = 0; i < deck.length; i++ ){
     console.log( deck[i] );
 }
 
