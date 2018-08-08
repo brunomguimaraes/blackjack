@@ -1,4 +1,4 @@
-//My first Blackjack Game on JavaScript
+//My first Blackjack Game on JavaScript teste pushpull
 //Bruno Moraes Guimarães
 
 //Cards var
