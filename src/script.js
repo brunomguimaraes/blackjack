@@ -7,14 +7,7 @@ let values = [  "King" , "Queen" , "Jack" , "Ten" ,
                 "Five" , "Four" , "Three" , "Two" ,
                 "Ace" ];
 
-
-let deck = [];
-
-for ( let suitsId = 0; suitsId < suits.length; suitsId++ ) {
-    for ( let valuesId = 0; valuesId < values.length; valuesId++ ) {
-        deck.push( values[valuesId] + " of " + suits[suitsId] );
-    }
-}
+let deck = deckMake();
 
 for ( i = 0; i < deck.length; i++ ){
     console.log( deck[i] );
@@ -22,9 +15,22 @@ for ( i = 0; i < deck.length; i++ ){
 
 console.log("The deck contains " + deck.length + " cards");
 
-let playerCards = [ deck[0], deck[2] ];
+let playerCards = [ deckDraw(), deckDraw() ];
 console.log("Blackjack, the game!");
 
 console.log("You are dealt: ");
 console.log("  " + playerCards[0]);
 console.log("  " + playerCards[1]);
+
+function deckMake() {
+    let deck = [];
+    for ( let suitsId = 0; suitsId < suits.length; suitsId++ ) {
+        for ( let valuesId = 0; valuesId < values.length; valuesId++ ) {
+            deck.push( values[valuesId] + " of " + suits[suitsId] );
+        }
+    }
+    return deck;
+}
+function deckDraw() {
+    return deck.shift();
+}
