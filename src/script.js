@@ -14,11 +14,7 @@ let textArea = document.getElementById("paragraph-one"),
     hitButton = document.getElementById("hit-button"),
     stayButton = document.getElementById("stay-button");
 
-    hitButton.style.display = "none";
-    stayButton.style.display = "none";
-    gameStatus();
-
-//Game var
+    //Game var
 let gameRunning = false,
     gameOver = false,
     playerWon = false,
@@ -30,6 +26,7 @@ let gameRunning = false,
 
 hitButton.style.display = "none";
 stayButton.style.display = "none";
+gameStatus();
 
 newGamebutton.addEventListener("click", function() {
     gameRunning = true;
@@ -37,13 +34,15 @@ newGamebutton.addEventListener("click", function() {
     playerWon = false;
 
     deck = deckMake();
-    playerCards = [ deckDraw() , deckDraw() ];
-    dealerCards = [ deckDraw() , deckDraw() ];
+    deckShuffle(deck);
+    playerCards = [ deckDraw(), deckDraw() ];
+    dealerCards = [ deckDraw(), deckDraw() ];
 
     textArea.innerText = "Alright let's do this";
     newGamebutton.style.display = "none";
     hitButton.style.display = "inline";
     stayButton.style.display = "inline";
+    gameStatus();
 });
 
 function deckMake() {
@@ -53,7 +52,7 @@ function deckMake() {
             let card = {
                 suit: suits[suitsId],
                 value: values[valuesId]
-            }
+            };
             deck.push( card );
         }
     }
@@ -62,7 +61,7 @@ function deckMake() {
 function deckDraw() {
     return deck.shift();
 }
-function cardString() {
+function cardString(card) {
     return card.value + " of " + card.suit;
 }
 
@@ -70,5 +69,14 @@ function gameStatus() {
     if(!gameRunning) {
         textArea.innerText = "Welcome to Blackjack";
         return;
+    }
+}
+
+function deckShuffle(deck) {
+    for (let i = 0; i< deck.length; i++) {
+        let swapId = Math.trunc(Math.random() * deck.length);
+        let aux = deck[swapId];
+        deck[swapId] = deck[i];
+        deck[i] = aux;
     }
 }
