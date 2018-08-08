@@ -7,6 +7,21 @@ let values = [  "King" , "Queen" , "Jack" , "Ten" ,
                 "Five" , "Four" , "Three" , "Two" ,
                 "Ace" ];
 
+let textArea = document.getElementById("paragraph-one");
+let newGamebutton = document.getElementById("newgame-button");
+let hitButton = document.getElementById("hit-button");
+let stayButton = document.getElementById("stay-button");
+
+hitButton.style.display = "none";
+stayButton.style.display = "none";
+
+newGamebutton.addEventListener("click", function() {
+    textArea.innerText = "Alright let's do this";
+    newGamebutton.style.display = "none";
+    hitButton.style.display = "inline";
+    stayButton.style.display = "inline";
+});
+
 let deck = deckMake();
 
 console.log("The deck contains " + deck.length + " cards");
