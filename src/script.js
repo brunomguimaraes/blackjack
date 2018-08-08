@@ -1,4 +1,4 @@
-//My first Blackjack Game
+//My first Blackjack Game on JavaScript
 //Bruno Moraes Guimarães
 
 //Cards var
@@ -188,7 +188,7 @@ function endGamecheck() {
             updateScore();
             }
     }
-    
+
     if (playerScore > 21 ) {
         playerWon = false;
         gameOver = true;
