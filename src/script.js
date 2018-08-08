@@ -58,11 +58,60 @@ function deckMake() {
     }
     return deck;
 }
+
 function deckDraw() {
     return deck.shift();
 }
+
 function cardString(card) {
     return card.value + " of " + card.suit;
+}
+
+function cardNumValue(card) {
+    switch(card.value) {
+        case "Ace":
+            return 1;
+        case "Two":
+            return 2;
+        case "Three":
+            return 3;
+        case "Four":
+            return 4;
+        case "Five":
+            return 5;
+        case "Six":
+            return 6;
+        case "Seven":
+            return 7;
+        case "Eight":
+            return 8;
+        case "Nine":
+            return 9;
+        default:
+            return 10;
+    }
+}
+
+function calcScore(cardArray) {
+    let score = 0,
+        hasAce = false;
+    for (let i = 0; i < cardArray.length; i++) {
+    let card = cardArray[i];
+    score += cardNumValue(card);
+        if ( card.value === "Ace" ) {
+            hasAce = true;    
+        } 
+    
+    }
+    if (hasAce && score + 10 <=21) {
+        return score + 10;
+    }
+    return score;
+}
+
+function updateScore() {
+    dealerScore = calcScore(dealerCards);
+    playerScore = calcScore(playerCards);
 }
 
 function gameStatus() {
@@ -70,6 +119,39 @@ function gameStatus() {
         textArea.innerText = "Welcome to Blackjack";
         return;
     }
+
+    let dealerString = "";
+    for (let i = 0; i< dealerCards.length; i++) {
+        dealerString += cardString(dealerCards[i]) + "\n";
+    }
+
+    let playerString = "";
+    for (let i = 0; i< playerCards.length; i++) {
+        playerString += cardString(playerCards[i]) + "\n";
+    }
+
+updateScore();
+
+textArea.innerText = "Dealer has:\n" +
+                    dealerString + 
+                    "(Score: " + dealerScore + ")\n\n" +
+
+                    "Player has:\n" +
+                    playerString + 
+                    "(Score: " + playerScore + ")\n\n";
+    
+    if (gameOver){
+        if(playerWon) {
+            textArea.innerText += "YOU WIN!";
+        }
+        else {
+            textArea.innerText += "DEALER WINS!"
+        }
+        newGamebutton.style.display = "inline";
+        hitButton.style.display = "none";
+        stayButton.style.display = "none";
+    }
+               
 }
 
 function deckShuffle(deck) {
